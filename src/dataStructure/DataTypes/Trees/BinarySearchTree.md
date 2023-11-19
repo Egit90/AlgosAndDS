@@ -98,7 +98,6 @@ class BinarySearchTree {
 
   levelOrder(){
     // BFS
-
     const queue = []
     queue.push(this.root)
 
@@ -125,6 +124,40 @@ class BinarySearchTree {
     if (!root.right) return root.value
     return this.max(root.right)
   }
+  delete(value){
+    this.root = this.deleteNode(this.root, value)
+  }
+ deleteNode(root,value){
+    if (root === null){
+        return root
+    }
+
+    if(value < root.value){
+        root.left = this.deleteNode(root.left,value)
+    } else if (value > root.value){
+        root.right = this.deleteNode(root.right,value)
+    } else {
+        // leaf node => no child => remove
+        if (!root.left && !root.right){
+            return null
+        }
+
+        // node has only one child => replace with child
+        if (!root.left){
+            return root.right
+        }else if (!root.right) {
+            return root.left
+        }
+
+        // node has two child node left and right
+        //            => replace with min(right)
+        //            => Delete Replacer node
+        root.value = this.min(root.right)
+        root.right = this.deleteNode(root.right, root.value)
+        return root
+    }
+
+ }
 }
 
 const bst = new BinarySearchTree();
@@ -188,3 +221,16 @@ console.log(bst.search(bst.root, 1));
    1. Dequeue the node's right child if exists.
 
 ![Alt text](image-11.png)
+
+---
+
+# Removing a Node.
+
+1. Case node is a leaf node
+   - remove the node
+2. Case node to be deleted has one child node
+   - Remove the node and replace it with its child
+3. Case node to be deleted have 2 child node.
+
+   - copy the value of in order successor and delete the in order successor3. Case node to be deleted have 2 child node.
+   - copy the value of in order successor and delete the in order successor
