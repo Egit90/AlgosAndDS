@@ -119,7 +119,11 @@ class BinarySearchTree {
   }
   min(root){
     if (!root.left) return root.value
-
+    return this.min(root.left)
+  }
+  max(root){
+    if (!root.right) return root.value
+    return this.max(root.right)
   }
 }
 
