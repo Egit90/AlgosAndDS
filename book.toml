@@ -1,0 +1,16 @@
+[book]
+authors = ["Egit90"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Algorithms"
+copy-js = true
+
+[output.html.playpen]
+editable = true
+editor = "ace"
+line-numbers = true
+
+
+[output.html.fold]
+enable = true
